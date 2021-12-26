@@ -1,0 +1,37 @@
+#:include pipe.kv
+FloatLayout:
+    Background:
+        id:background
+        canvas.before:
+            Rectangle:
+                size:self.size
+                pos: self.pos
+                source : "sky.png"
+            Rectangle:
+                size:self.width,106
+                pos: self.pos[0],self.pos[1]+self.height-106
+                texture : self.cloud_texture    
+            Rectangle:
+                size:self.width,89
+                pos: self.pos[0],self.pos[1]
+                texture : self.floor_texture
+    Label : 
+        id : score 
+        size_hint_y : None
+        height : 89
+        text: "0"
+        font_size : 40 
+    Button:
+        text: " Start"
+        size_hint : None,0.1
+        id : start_button
+        on_release: 
+            self.disabled = True
+            self.opacity = 0 
+            app.start_game()   
+    Plane : 
+        source : "Plane.png"
+        size_hint : None,None
+        size : 89,34
+        pos : 20,(root.height - 89)/2.0
+        id : plane        
